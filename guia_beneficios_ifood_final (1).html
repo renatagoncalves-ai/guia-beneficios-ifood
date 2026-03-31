@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Atendimento | Benefícios iFood</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ifood-red: #EA1D2C;
+            --ifood-red-dark: #C41820;
+            --ifood-red-light: #FFF5F5;
+            --bg-light: #F9F9F9;
+            --white: #FFFFFF;
+            --text-main: #3E3E3E;
+            --text-muted: #717171;
+            --success: #00B44A;
+            --warning: #FFB800;
+            --error: #EA1D2C;
+            --info: #0099FF;
+            --purple: #9C27B0;
+            --border-radius: 16px;
+            --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.08);
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-top: 75px;
+        }
+
+        /* ===== NAVEGAÇÃO ===== */
+        nav {
+            position: fixed;
+            top: 0; width: 100%; height: 75px;
+            background: var(--white);
+            border-bottom: 3px solid var(--ifood-red);
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+        }
+        .nav-container {
+            max-width: 1200px; margin: 0 auto; height: 100%;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 30px;
+        }
+        .nav-logo {
+            font-size: 18px; font-weight: 800; color: var(--ifood-red);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .nav-links { display: flex; gap: 20px; overflow-x: auto; scrollbar-width: none; }
+        .nav-links::-webkit-scrollbar { display: none; }
+        .nav-links a {
+            text-decoration: none; color: var(--text-main);
+            font-weight: 600; font-size: 13px; white-space: nowrap;
+        }
+        .nav-links a:hover { color: var(--ifood-red); }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--ifood-red) 0%, var(--ifood-red-dark) 100%);
+            padding: 50px 30px; text-align: center; color: var(--white);
+        }
+        .hero h1 { font-size: clamp(24px, 5vw, 36px); font-weight: 900; margin-bottom: 10px; }
+        .hero p { font-size: 16px; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+
+        /* ===== CONTAINER ===== */
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 30px; }
+        section { margin-bottom: 60px; scroll-margin-top: 100px; }
+        .section-title {
+            font-size: 22px; font-weight: 800; margin-bottom: 25px;
+            display: flex; align-items: center; gap: 12px;
+        }
+        .section-title::before {
+            content: ""; width: 6px; height: 26px;
+            background: var(--ifood-red); border-radius: 10px;
+        }
+
+        /* ===== CARDS & BOXES ===== */
+        .card {
+            background: var(--white); padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm); margin-bottom: 25px;
+        }
+        .n1-box { border: 2px solid var(--success); background: #F0FDF4; }
+        .n1-box h3 { color: var(--success); margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .n2-box { border: 2px solid var(--error); background: #FFF5F5; }
+        .n2-box h3 { color: var(--error); margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        
+        .important-rules-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;
+        }
+        .rule-item {
+            background: #fff; padding: 20px; border-radius: 12px; border-left: 5px solid var(--ifood-red);
+            box-shadow: var(--shadow-sm);
+        }
+        .rule-item h4 { color: var(--ifood-red); margin-bottom: 10px; font-size: 16px; }
+
+        /* ===== TABELAS ===== */
+        .table-wrapper {
+            background: var(--white); border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm); overflow-x: auto;
+        }
+        table { width: 100%; border-collapse: collapse; min-width: 700px; }
+        th {
+            background: #fcfcfc; padding: 15px 20px; text-align: left;
+            font-size: 12px; color: var(--ifood-red); border-bottom: 2px solid #eee;
+        }
+        td { padding: 15px 20px; border-bottom: 1px solid #f0f0f0; font-size: 13px; vertical-align: top; line-height: 1.6; }
+        .benefit-name { font-weight: 700; color: #333; }
+        .highlight-red { color: var(--ifood-red); font-weight: 700; }
+
+        /* ===== VALE TRANSPORTE DETAILS ===== */
+        .vt-details {
+            display: grid; grid-template-columns: 1fr; gap: 15px;
+        }
+        .vt-box {
+            padding: 20px; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0;
+        }
+        .vt-box h5 { margin-bottom: 10px; color: var(--ifood-red); font-weight: 800; }
+        .vt-important { background: #fffbeb; border: 1px solid #fef3c7; color: #92400e; padding: 10px; border-radius: 8px; margin-top: 10px; font-size: 13px; }
+
+        /* ===== PROCESS STEPS ===== */
+        .step-container { border-left: 3px solid var(--purple); padding-left: 20px; margin-top: 20px; }
+        .step { margin-bottom: 20px; }
+        .step-title { font-weight: 800; color: var(--purple); margin-bottom: 5px; }
+
+        /* ===== COPARTICIPAÇÃO SECTION ===== */
+        .copay-section { border-left: 6px solid var(--info); }
+        .copay-step { background: #f0f9ff; padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 1px solid #e0f2fe; }
+        .copay-step h5 { color: var(--info); margin-bottom: 8px; font-weight: 800; }
+
+        /* ===== iFamily SECTION ===== */
+        .ifamily-box { border-left: 6px solid var(--info); background: #F0F9FF; }
+        .ifamily-box h3 { color: var(--info); margin-bottom: 15px; }
+        .ifamily-box ul { margin: 15px 0 15px 25px; }
+        .ifamily-box li { margin-bottom: 8px; font-size: 14px; }
+
+        /* ===== EXTENSÕES ===== */
+        .extensao-box { border-left: 6px solid var(--warning); background: #FFFBEB; padding: 25px; border-radius: 12px; margin-bottom: 20px; }
+        .extensao-box h4 { color: var(--warning); margin-bottom: 15px; font-weight: 800; }
+        .extensao-highlight { background: var(--ifood-red-light); padding: 3px 10px; border-radius: 6px; color: var(--ifood-red); font-weight: 700; }
+
+        /* ===== DEPENDENTES ===== */
+        .dep-step-box { background: #F3E8FF; border: 2px solid var(--purple); border-radius: 12px; padding: 20px; margin-bottom: 15px; }
+        .dep-step-box h5 { color: var(--purple); font-weight: 800; margin-bottom: 10px; }
+        .dep-step-box code { background: #E9D5FF; color: var(--purple); padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+        .exemplo-pratico { background: #FFF9E6; border: 2px dashed var(--warning); padding: 20px; border-radius: 12px; margin-top: 20px; }
+        .exemplo-pratico h5 { color: var(--warning); font-weight: 800; margin-bottom: 15px; }
+        .exemplo-pratico .ok { background: #E8F5E9; border-left: 4px solid var(--success); padding: 12px; border-radius: 8px; margin-top: 10px; }
+        .exemplo-pratico .nok { background: #FFEBEE; border-left: 4px solid var(--error); padding: 12px; border-radius: 8px; margin-top: 10px; }
+
+        .link-button {
+            display: inline-block; background: var(--ifood-red); color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 13px; margin-top: 10px;
+        }
+        .link-button:hover { background: var(--ifood-red-dark); }
+        .link-button.info { background: var(--info); }
+        .link-button.info:hover { background: #007acc; }
+
+        footer {
+            padding: 40px; text-align: center; color: var(--text-muted); font-size: 12px;
+            border-top: 1px solid #eee; background: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container { padding: 0 15px; }
+            .hero { padding: 40px 20px; }
+            .container { padding: 20px 15px; }
+            .important-rules-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">People Benefícios</div>
+            <div class="nav-links">
+                <a href="#triagem">Triagem N1/N2</a>
+                <a href="#regras">Regras Importantes</a>
+                <a href="#ifamily">iFamily</a>
+                <a href="#extensoes">Extensões Plano</a>
+                <a href="#dependentes">Dependentes</a>
+                <a href="#vt">Vale Transporte</a>
+                <a href="#ativacao">Ativação Saúde</a>
+                <a href="#coparticipacao">Copay</a>
+                <a href="#offboarding">Offboarding</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Guia Essencial de Atendimento</h1>
+            <p>Processos fundamentais para o sucesso do atendimento dos temas de benefícios.</p>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- MATRIZ DE TRIAGEM N1/N2 -->
+        <section id="triagem">
+            <h2 class="section-title">Matriz de Triagem N1 / N2</h2>
+            
+            <div class="card n1-box">
+                <h3>🟢 Resolvido pelo N1</h3>
+                <ul style="margin-left: 20px;">
+                    <li>Numeração de carteirinhas (disponível 3 dias após FL finalizar escolhas, liberação toda segunda no RH Digital)</li>
+                    <li>Negativa direta de reembolsos de idiomas sem comprovante em R$</li>
+                    <li>Informações sobre coberturas, carências e regras de permanência</li>
+                    <li>Extensões de plano de saúde para grades 14+ (automático 60 dias)</li>
+                    <li>Consultas sobre envio de kits iFamily</li>
+                    <li>Pedidos de mudança de plano por problemas pessoais → direcionar ao iDoc</li>
+                    <li>Mudanças por endereço ou insatisfação → não permitido</li>
+                    <li>Orientação educativa sobre processo de coparticipação (5 passos)</li>
+                </ul>
+            </div>
+
+            <div class="card n2-box">
+                <h3>🔴 Escalar para N2</h3>
+                <p style="margin-bottom: 15px; font-weight: 600;">Confira abaixo exemplos de situações para o encaminhamento do ticket ao N2:</p>
+                <ul style="margin-left: 20px;">
+                    <li>Colaborador contesta a coparticipação <strong>mesmo após</strong> a orientação educativa sobre os 5 passos do copay</li>
+                    <li>Erro sistêmico na inclusão, validado <strong>após</strong> o cumprimento do prazo de D+4 dias úteis</li>
+                    <li>Situações de exceção de extensão de plano que necessitem de abertura de thread no Slack</li>
+                    <li>Evidências de falha técnica em parceiros externos (Wellhub, Vida Link, etc.)</li>
+                    <li>Problemas de sistema após tentativa de troubleshooting básico</li>
+                    <li>Casos fora do padrão que exigem análise técnica aprofundada</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- REGRAS IMPORTANTES CONSOLIDADAS -->
+        <section id="regras">
+            <h2 class="section-title">Regras Importantes</h2>
+            <div class="important-rules-grid">
+                <div class="rule-item">
+                    <h4>🏥 Saúde e Permanência</h4>
+                    <p>• <strong>Bradesco/Unimed:</strong> Opção de operadora permitida apenas na admissão.<br>
+                    • <strong>Mudança de Plano:</strong> Motivos de saúde pessoal → iDoc. Endereço ou insatisfação → Não permitido.<br>
+                    • <strong>Permanência:</strong> Upgrade 12 meses / Downgrade 24 meses.</p>
+                </div>
+                <div class="rule-item">
+                    <h4>🎓 Estagiários e Aprendizes</h4>
+                    <p>• <strong>Dependentes:</strong> Não é permitido a inclusão.<br>
+                    • <strong>Plano:</strong> Ficam fixos no plano básico sem coparticipação (copay).<br>
+                    • <strong>Aprendizes:</strong> Não podem aderir a Farmácia e Viagens (maiores de idade).</p>
+                </div>
+                <div class="rule-item">
+                    <h4>🌍 Reembolso e Idiomas</h4>
+                    <p>• <strong>Idiomas:</strong> Comprovante exigido apenas se o recibo estiver em moeda diferente de R$.<br>
+                    • <strong>Negativas:</strong> Devem ser sempre educativas, explicando claramente o motivo.<br>
+                    • <strong>Pago até:</strong> Dia 15 do mês posterior (rescisão complementar).</p>
+                </div>
+                <div class="rule-item" style="border-left-color: var(--warning);">
+                    <h4>🚌 Vale Transporte (VT)</h4>
+                    <p>• <strong>Natureza:</strong> É uma ferramenta de trabalho, não benefício flexível.<br>
+                    • <strong>Afastamentos:</strong> Pagamento proporcional em casos de férias ou licenças.<br>
+                    • <strong>Saldo:</strong> Pode ser utilizado por tempo indeterminado.</p>
+                </div>
+                <div class="rule-item" style="border-left-color: var(--success);">
+                    <h4>📅 Ativação de Benefícios</h4>
+                    <p>• <strong>Maioria:</strong> Dia 01 do mês seguinte à admissão.<br>
+                    • <strong>Exceções (imediata):</strong> Plano de saúde, Plano odontológico, VR.<br>
+                    • <strong>Wellhub:</strong> Apenas dependentes legais.</p>
+                </div>
+                <div class="rule-item" style="border-left-color: var(--purple);">
+                    <h4>🔒 Seguro de Vida</h4>
+                    <p>• <strong>Aprendizes:</strong> Não podem alterar.<br>
+                    • <strong>Validade:</strong> Até o último dia do mês de desligamento.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- iFamily -->
+        <section id="ifamily">
+            <h2 class="section-title">FAQ iFamily</h2>
+            <div class="card ifamily-box">
+                <h3>🍼 O que é o iFamily?</h3>
+                <p>O iFamily é um programa do iFood voltado para toda a família, feito para apoiar quem vai ser mãe, pai ou responsável, e também a liderança dessa pessoa durante esse momento especial.</p>
+                
+                <p style="margin-top: 15px;"><strong>Como funciona:</strong></p>
+                <ul>
+                    <li><strong>Inscrição:</strong> Via formulário online (processo atual)</li>
+                    <li><strong>Envio de Kits:</strong> Realizado aos <strong>7 meses de gestação</strong></li>
+                    <li><strong>Mentoria:</strong> Status consultado via thread no Slack</li>
+                    <li><strong>Elegibilidade:</strong> Todos os FLs são elegíveis, sem exceção</li>
+                    <li><strong>Desligamento:</strong> Programa encerrado automaticamente após saída da empresa</li>
+                </ul>
+
+                <p style="margin-top: 15px;"><strong>Comunicação de perda gestacional:</strong></p>
+                <p style="margin-top: 5px;">Pode ser feita pelo FoodLover, BP, SPOC ou time de saúde através de:</p>
+                <ul style="margin-top: 5px;">
+                    <li>Abertura de ticket</li>
+                    <li>Thread no Slack</li>
+                </ul>
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5gKxgQ1jk9NJwjoM3w_6ycox5UKKKylKq8d48cDRFdAiNzA/viewform" target="_blank" class="link-button info">
+                    📝 Inscrever no iFamily
+                </a>
+
+                <p style="margin-top: 20px; font-size: 12px; color: var(--text-muted);">
+                    <strong>Base para consulta de envios de kits:</strong> [Link disponível internamente]
+                </p>
+            </div>
+        </section>
+
+        <!-- EXTENSÕES DE PLANO DE SAÚDE -->
+        <section id="extensoes">
+            <h2 class="section-title">Extensões de Plano de Saúde</h2>
+
+            <div class="extensao-box">
+                <h4>⚡ Regra Atual de Extensão</h4>
+                <ul style="margin: 15px 0 15px 25px;">
+                    <li><strong>Grades 14+:</strong> Extensão automática de <span class="extensao-highlight">60 dias</span> a partir da data de desligamento</li>
+                    <li><strong>Não é necessário</strong> abrir chamado para essa extensão (processo automático)</li>
+                    <li><strong>Exceção:</strong> Pedido de demissão <strong>NÃO</strong> tem extensão automática</li>
+                    <li><strong>Duração do plano:</strong> Ativo durante a <strong>projeção do aviso prévio</strong></li>
+                    <li><strong>Consulta de projeção:</strong> Base disponível com o time de FLC</li>
+                    <li><strong>Exceções especiais:</strong> Tratadas caso a caso — sempre que houver dúvida, abrir thread no Slack</li>
+                </ul>
+
+                <div style="background: #FFF; padding: 15px; border-radius: 8px; margin-top: 15px; border: 1px dashed var(--warning);">
+                    <strong>📌 Consulta de Período de Encerramento:</strong><br>
+                    Para consultar o período em que os planos serão encerrados: <strong>[Link disponível internamente]</strong>
+                </div>
+            </div>
+
+            <div class="card" style="border-left: 6px solid var(--info);">
+                <h4 style="color: var(--info); margin-bottom: 15px;">ℹ️ Tratamento de Exceções</h4>
+                <ul style="margin-left: 25px;">
+                    <li>Exceções são tratadas com <strong>várias variáveis</strong> (situação de saúde, dependentes, tratamentos em andamento)</li>
+                    <li>Sempre que houver dúvida sobre elegibilidade, <strong>abrir thread no Slack</strong> para análise do time</li>
+                    <li>Não negar extensões fora do padrão sem consultar N2 ou HRBP</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- CONFIRMAÇÃO DE INCLUSÃO DE DEPENDENTES -->
+        <section id="dependentes">
+            <h2 class="section-title">Confirmação de Inclusão de Dependentes</h2>
+
+            <div class="card">
+                <p style="margin-bottom: 20px; font-weight: 600;">Processo de validação em 2 passos:</p>
+
+                <div class="dep-step-box">
+                    <h5>1️⃣ Conferir se o dependente foi selecionado na eleição</h5>
+                    <p style="margin-bottom: 10px;"><strong>Caminho:</strong></p>
+                    <p>
+                        <code>Perfil do RH</code> → 
+                        <code>Colaboradores</code> → 
+                        <code>Buscar</code> → 
+                        <code>Eleição</code> → 
+                        <code>Baixar Relatório</code>
+                    </p>
+                    <p style="margin-top: 10px; font-size: 13px;">Verificar se o dependente consta como selecionado no relatório de eleição.</p>
+                </div>
+
+                <div class="dep-step-box">
+                    <h5>2️⃣ Entender o prazo de movimentação</h5>
+                    <p>• <strong>Movimentação/Inclusão no plano:</strong> D+2 (dias úteis) após finalização das escolhas</p>
+                    <p>• <strong>Reflexo para a operadora:</strong> D+4 (dias úteis) após finalização das escolhas</p>
+                    <p style="margin-top: 10px; background: #FFF9E6; padding: 10px; border-radius: 6px; font-size: 13px;">
+                        <strong>⚠️ Importante:</strong> Considerar apenas <strong>dias úteis</strong> para a contagem.
+                    </p>
+                    <p style="margin-top: 10px;">• <strong>Carteirinhas:</strong> Inseridas no RH Digital toda <strong>segunda-feira</strong></p>
+                </div>
+
+                <!-- EXEMPLO PRÁTICO -->
+                <div class="exemplo-pratico">
+                    <h5>💡 Exemplo Prático</h5>
+                    
+                    <p><strong>Situação:</strong> FoodLover finalizou a inclusão do dependente no portal na <strong>terça-feira, dia 10/12</strong>.</p>
+                    
+                    <p style="margin-top: 15px;"><strong>Timeline esperada:</strong></p>
+                    
+                    <p style="margin-left: 15px; margin-top: 10px; font-size: 14px;">
+                        📅 <strong>Terça (10/12):</strong> Finalização das escolhas no portal<br>
+                        📅 <strong>Quinta (12/12) – D+2:</strong> Movimentação/inclusão processada no sistema<br>
+                        📅 <strong>Segunda (16/12) – D+4:</strong> Reflexo para a operadora de saúde<br>
+                        📅 <strong>Segunda (16/12):</strong> Carteirinha disponível no RH Digital
+                    </p>
+
+                    <div class="ok">
+                        <strong>✅ Resposta ao FL:</strong> "Seu dependente foi incluído com sucesso! A carteirinha estará disponível no RH Digital na próxima segunda-feira (16/12). O plano já estará ativo junto à operadora a partir dessa mesma data."
+                    </div>
+
+                    <div class="nok">
+                        <strong>❌ Se não constar no relatório:</strong> "Verificamos que o dependente não foi selecionado durante a janela de eleição. Para inclusão fora do prazo, é necessário aguardar a próxima janela anual ou solicitar análise de exceção (casamento, nascimento, adoção)."
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VALE TRANSPORTE DETALHADO -->
+        <section id="vt">
+            <h2 class="section-title">Gestão de Vale Transporte (VT)</h2>
+            <div class="card">
+                <div class="vt-details">
+                    <div class="vt-box">
+                        <h5>1. Regras de Elegibilidade e Modelo</h5>
+                        <p>Uso exclusivo Casa-Trabalho. Limites mensais por modelo de trabalho:</p>
+                        <ul style="margin: 10px 25px; font-size: 14px;">
+                            <li><strong>Presencial:</strong> Até 22 dias/mês.</li>
+                            <li><strong>Home Office / Híbrido:</strong> Até 11 dias/mês.</li>
+                        </ul>
+                        <div class="vt-important">
+                            <strong>⚠️ Alerta N1:</strong> No sistema existem apenas as opções "22 dias" ou "Inferior a 12". Quem solicita acima de 11 dias perde a elegibilidade ao modelo híbrido.
+                        </div>
+                        <div class="vt-important" style="background: #e0f2fe; border-color: #bae6fd; color: #0369a1;">
+                            <strong>🎓 Aprendizes:</strong> Devem solicitar obrigatoriamente o trajeto <strong>Casa x Escritório</strong> e <strong>Casa x Curso</strong>.
+                        </div>
+                    </div>
+
+                    <div class="vt-box">
+                        <h5>2. Custos e Prazos</h5>
+                        <p>• <strong>Desconto:</strong> 2,5% do salário base ou valor total do VT (o menor).<br>
+                           • <strong>Crédito:</strong> Até dia 25 no cartão iFood (Mobilidade) + R$ 10 p/ taxas.<br>
+                           • <strong>Alterações:</strong> Pedidos até dia 10 valem p/ o mês seguinte. Após dia 10, p/ o segundo mês.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ATIVAÇÃO SAÚDE E ODONTO -->
+        <section id="ativacao">
+            <h2 class="section-title">Ativação Saúde e Odonto</h2>
+            <div class="card">
+                <p style="margin-bottom: 15px;">Este racional aplica-se tanto para <strong>Titulares</strong> quanto para <strong>Dependentes</strong>:</p>
+                <div class="step-container">
+                    <div class="step">
+                        <div class="step-title">1. Validação de Eleição</div>
+                        <p>Verificar se a pessoa consta no relatório de Eleição (Perfil RH). Sem eleição aprovada, não há fluxo de ativação.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-title">2. Operação (Sistema Interno)</div>
+                        <p>• <strong>D+2 dias úteis:</strong> Tempo necessário para a operação de movimentação ocorrer no sistema interno de benefícios.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-title">3. Reflexo na Operadora</div>
+                        <p>• <strong>D+4 dias úteis:</strong> Prazo para que os dados sejam processados e reflitam efetivamente na base da operadora de saúde.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-title">4. Liberação de Carteirinhas</div>
+                        <p>As carteirinhas são inseridas no RH Digital sempre às <strong>segundas-feiras</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DESCONTO DE COPARTICIPAÇÃO (COPAY) -->
+        <section id="coparticipacao">
+            <h2 class="section-title">Desconto de Coparticipação</h2>
+            <div class="card copay-section">
+                <p style="margin-bottom: 20px; font-weight: 700; color: #555;">Antes de escalar para o N2, sugerimos orientar o colaborador sobre o processo educativo de copay:</p>
+                
+                <div class="copay-step">
+                    <h5>📌 Passo 1: Isenção e Fluxo de Aprovação</h5>
+                    <p>A isenção depende da análise e aprovação do laudo pelo time de Saúde. Se a análise ainda não foi concluída, o desconto ocorrerá normalmente.</p>
+                </div>
+
+                <div class="copay-step">
+                    <h5>📌 Passo 2: Janela de Cobrança (Retroatividade)</h5>
+                    <p>As operadoras podem levar de 2 a 4 meses para faturar um exame. O desconto atual pode ser referente a um período em que a isenção ainda não estava ativa.</p>
+                </div>
+
+                <div class="copay-step">
+                    <h5>📌 Passo 3: Conferência por Extrato</h5>
+                    <p>Orientar o FL a baixar o extrato (Portal Bradesco / App Unimed). O valor contestado deve ser o "Total Geral" do extrato oficial da operadora.</p>
+                </div>
+
+                <div class="copay-step">
+                    <h5>📌 Passo 4: Verificar Data do Procedimento</h5>
+                    <p>Confirmar se o procedimento foi realizado após a data de aprovação da isenção. Procedimentos anteriores seguem regra normal de copay.</p>
+                </div>
+
+                <div class="copay-step" style="border-color: var(--warning); background: #fffdf5;">
+                    <h5>💡 Passo 5: Quando abrir o ticket N2?</h5>
+                    <p>Se após as explicações o colaborador trouxer evidências de que a cobrança é de período isento/aprovado, escale com: 
+                    <strong>Data/Tipo do procedimento + Print da Folha + Print do Extrato.</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- OFFBOARDING COMPLETO -->
+        <section id="offboarding">
+            <h2 class="section-title">Offboarding de Benefícios</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">Benefício</th>
+                            <th>Permanência Pós-Desligamento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="benefit-name">🏥 Plano Médico / Odonto</span></td>
+                            <td>
+                                <strong>Plano ativo durante a projeção do aviso prévio</strong><br>
+                                <br>
+                                • Base para consulta da projeção: disponível com o time de FLC<br>
+                                • Grades 14+: extensão automática de 60 dias (exceto pedido de demissão)<br>
+                                • Com 2 anos no plano: pode solicitar continuidade integral com a operadora
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="benefit-name">⚠️ Exceções de Extensão</span></td>
+                            <td>
+                                Casos especiais requerem análise técnica (tratamentos graves, dependentes com necessidades especiais).
+                                <br><a href="#" class="link-button">Consultar Base de Exceções</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="benefit-name">🍼 iFamily</span></td>
+                            <td>Programa <strong>encerrado automaticamente</strong> após desligamento da empresa.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="benefit-name">🚌 Vale Transporte</span></td>
+                            <td>Saldo pode ser utilizado <strong>por tempo indeterminado</strong>. Desconto proporcional em rescisão.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="benefit-name">📚 Idiomas</span></td>
+                            <td>Pago até o <strong>dia 15 do mês posterior</strong> (rescisão complementar). Válido para inclusões até dia 10.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="benefit-name">🏋️ Wellhub / Vida Link Meds</span></td>
+                            <td>Utilização até o <strong>dia 1º do mês seguinte</strong> à saída.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="benefit-name">💊 Vida Link Farmácia</span></td>
+                            <td>Saldo positivo pode ser utilizado <strong>sem prazo</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="benefit-name">🐾 Assistência Pet</span></td>
+                            <td>Utilização até o <strong>último dia do mês de desligamento</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="benefit-name">✈️ Clube de Viagens</span></td>
+                            <td>Última recarga no mês da saída. Pontos válidos por <strong>01 ano</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="benefit-name">🎭 VR / Cultura / Mobilidade</span></td>
+                            <td>Saldo ativo no cartão físico <strong>até finalizar os créditos</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="benefit-name">💰 Reembolso Flex</span></td>
+                            <td>Se solicitado antes do desligamento: pago até <strong>dia 15 do mês posterior</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="benefit-name">🛡️ Seguro de Vida</span></td>
+                            <td>Válido até o <strong>último dia do mês de desligamento</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="benefit-name">⚖️ Ass. Jurídica / Financeira</span></td>
+                            <td>Utilização até o <strong>dia 1º do mês seguinte</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="benefit-name">🎁 Clube de Benefícios</span></td>
+                            <td><strong>Suspenso imediatamente</strong>.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <strong>Guia Interno — People Benefícios iFood</strong><br>
+        Atualizado 2024 | Versão 5.0 Final
+    </footer>
+
+</body>
+</html>
